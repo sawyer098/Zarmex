@@ -34,14 +34,9 @@ public class FuneralDao {
     }
 
     public List<Funeral> findAllFunerals () {
-        Query query = entityManager.createQuery("SELECT b FROM Funeral b");
+        Query query = entityManager.createQuery("SELECT b FROM Funeral b ORDER BY b.id DESC");
         List<Funeral> funerals = query.getResultList();
         return funerals;
     }
 
-    public List<Funeral> findLatestFunerals(int number) {
-        Query query = entityManager.createQuery("SELECT b FROM Funeral b ORDER BY b.created DESC");
-        query.setMaxResults(number);
-        return query.getResultList();
-    }
 }

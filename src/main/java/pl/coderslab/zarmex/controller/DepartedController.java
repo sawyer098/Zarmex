@@ -1,15 +1,19 @@
 package pl.coderslab.zarmex.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.*;
 import pl.coderslab.zarmex.model.Departed;
 import pl.coderslab.zarmex.service.DepartedService;
 
+import javax.validation.Valid;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -38,8 +42,44 @@ public class DepartedController {
     }
 
     @PostMapping("/add")
-    public String addSave(Departed departed) {
+    public String addSave(@Valid Departed departed, BindingResult result) {
+        if (result.hasErrors()) {
+            return "/departed/addForm";
+        }
+//        System.out.println("Data urodzenia: " + departed.getDateOfBirth());
+//        departed.setDateOfBirth(departed.getDateOfBirth());
+//        departed.setDateOfDeath(departed.getDateOfDeath());
         departedService.departedSave(departed);
         return "redirect:/departed/all";
     }
+
+    @GetMapping("/edit/{id}")
+    public String edit(@PathVariable long id, Model model) {
+        model.addAttribute("departed", departedService.departedFindById(id));
+        return "/departed/addForm";
+    }
+
+    @PostMapping("/edit/{id}")
+    public String update(@PathVariable long id, @Valid Departed departed, BindingResult result) {
+        if (result.hasErrors()) {
+            return "/departed/addForm";
+        }
+        departedService.departedUpdate(departed);
+        return "redirect:/departed/all";
+    }
+
+    @GetMapping("/delete/{id}")
+    public String delete (@PathVariable long id) {
+        Departed departed = departedService.departedFindById(id);
+        departedService.departedDelete(departed);
+        return "redirect:/departed/all";
+    }
+
+    @InitBinder
+    public void initBinder(WebDataBinder binder) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        dateFormat.setLenient(false);
+        binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
+    }
+
 }

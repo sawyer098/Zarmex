@@ -1,6 +1,5 @@
 package pl.coderslab.zarmex.model;
 
-
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -16,9 +15,11 @@ public class Funeral {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-//    1. Dane osoby zmarłej
-//    @OneToOne
-//    private Departed departed;
+//    1. Zmarły danego pogrzebu
+//    @NotEmpty(message = "Wybierz zmarłego")
+    @OneToOne
+    @JoinColumn(name = "departed_id")
+    private Departed departed;
 
     //    2. Cena trumny
     private long coffin;
@@ -34,21 +35,30 @@ public class Funeral {
     private long freezer;
     //    8. Cena ubierania zmarłego
     private long dressing;
-    //    9. Cena ubrania dla zmarłego
+    //    9. Cena ubranie dla zmarłego
     private long clothes;
     //    10. Cena książeczki
     private long book;
     //    11. Cena różańca
     private long rosary;
-    // 12. Data utworzenia
-    @Temporal(TemporalType.TIMESTAMP)
+    //    12. Suma
+    private long cost;
+    //    13. Data pogrzebu
+    @Temporal(TemporalType.DATE)
+    private Date funeralDate;
+    //    Godzina pogrzebu
+    private String funeralTime;
+    //    14. Miejsce pogrzebu
+    private String funeralPlace;
+    //    15. Data utworzenia
+    @Temporal(TemporalType.DATE)
     @CreationTimestamp
     private Date created;
 
-//    //    13. Klient
-//    @ManyToOne
-//    @JoinColumn(name="client_id")
-//    private Client client;
+    //    16. Klient danego pogrzebu
+//    @NotEmpty(message = "Wybierz klienta")
+    @ManyToOne
+    private Client client;
 
 }
 

@@ -33,4 +33,7 @@ public class DepartedService {
         return departedDao.findAllDepartedList();
     }
 
+    public List<Departed> findAllDepartedWithoutFuneralList() {
+        return departedDao.findAllDepartedWithoutFuneralList();
+    }
 }

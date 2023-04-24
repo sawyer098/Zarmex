@@ -33,9 +33,4 @@ public class FuneralService {
         return funeralDao.findAllFunerals();
     }
 
-    public List<Funeral> findLatestFunerals(int number) {
-        return funeralDao.findLatestFunerals(number);
-    }
-
-
 }

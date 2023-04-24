@@ -39,4 +39,10 @@ public class DepartedDao {
         return departedList;
     }
 
+    public List<Departed> findAllDepartedWithoutFuneralList() {
+        Query query = entityManager.createQuery("SELECT b FROM Departed b WHERE b.funeral IS NULL");
+        List<Departed> departedListWithoutFuneral = query.getResultList();
+        return departedListWithoutFuneral;
+    }
+
 }
