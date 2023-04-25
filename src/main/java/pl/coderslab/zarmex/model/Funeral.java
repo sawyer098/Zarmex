@@ -4,6 +4,7 @@ import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Entity
@@ -16,7 +17,6 @@ public class Funeral {
     private long id;
 
 //    1. Zmarły danego pogrzebu
-//    @NotEmpty(message = "Wybierz zmarłego")
     @OneToOne
     @JoinColumn(name = "departed_id")
     private Departed departed;
@@ -56,7 +56,6 @@ public class Funeral {
     private Date created;
 
     //    16. Klient danego pogrzebu
-//    @NotEmpty(message = "Wybierz klienta")
     @ManyToOne
     private Client client;
 

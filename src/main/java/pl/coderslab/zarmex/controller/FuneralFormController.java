@@ -26,6 +26,7 @@ public class FuneralFormController {
 
     private final FuneralService funeralService;
     private final DepartedService departedService;
+
     private final ClientService clientService;
 
     @ModelAttribute
@@ -38,6 +39,7 @@ public class FuneralFormController {
         return departedService.findAllDepartedWithoutFuneralList();
     }
 
+
     @ModelAttribute
     public List<Client> getClients() {
         return clientService.findAll();
@@ -49,6 +51,11 @@ public class FuneralFormController {
         for (Departed departed : departedes) {
             departed.setFullName(departed.getFirstName() + " " + departed.getLastName());
         }
+        List<Client> clientes = clientService.findAll();
+        for (Client client : clientes) {
+            client.setFullName(client.getFirstName() + " " + client.getLastName());
+        }
+        model.addAttribute("clientes", clientes);
         model.addAttribute("departedes", departedes);
         model.addAttribute("funeral", new Funeral());
         return "/funeral/addForm";
@@ -59,20 +66,22 @@ public class FuneralFormController {
         if (result.hasErrors()) {
             return "/funeral/addForm";
         }
-        Departed departed = departedService.departedFindById(funeral.getDeparted().getId());
-        funeral.setDeparted(departed);
-        departed.setFuneral(funeral);
-        departedService.departedSave(departed);
-        Client client = clientService.clientFindById(funeral.getClient().getId());
-        funeral.setClient(client);
-        client.getFunerals().add(funeral);
-        clientService.clientSave(client);
         funeralService.funeralSave(funeral);
         return "redirect:/funeral/all";
     }
 
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable long id, Model model) {
+        List<Departed> departedes = departedService.findAllDepartedWithoutFuneralList();
+        for (Departed departed : departedes) {
+            departed.setFullName(departed.getFirstName() + " " + departed.getLastName());
+        }
+        List<Client> clientes = clientService.findAll();
+        for (Client client : clientes) {
+            client.setFullName(client.getFirstName() + " " + client.getLastName());
+        }
+        model.addAttribute("clientes", clientes);
+        model.addAttribute("departedes", departedes);
         model.addAttribute("funeral", funeralService.funeralFindById(id));
         return "/funeral/addForm";
     }

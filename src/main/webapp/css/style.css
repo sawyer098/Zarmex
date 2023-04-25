@@ -55,5 +55,7 @@ table.funeral-table tr:hover {
     color: #dddddd;
 }
 
-.
+main {
+display: flex;
+}
 

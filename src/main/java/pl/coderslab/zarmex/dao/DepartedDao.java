@@ -8,6 +8,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Repository
 @Transactional
@@ -29,20 +30,23 @@ public class DepartedDao {
     }
 
     public void delete (Departed departed) {
-        entityManager.remove(entityManager.contains(departed) ?
-                departed : entityManager.merge(departed));
+        entityManager.remove(entityManager.contains(departed) ? departed : entityManager.merge(departed));
     }
 
     public List<Departed> findAllDepartedList () {
-        Query query = entityManager.createQuery("SELECT b FROM Departed b");
+        Query query = entityManager.createQuery("SELECT b FROM Departed b order by b.id desc");
         List<Departed> departedList = query.getResultList();
         return departedList;
     }
 
     public List<Departed> findAllDepartedWithoutFuneralList() {
-        Query query = entityManager.createQuery("SELECT b FROM Departed b WHERE b.funeral IS NULL");
-        List<Departed> departedListWithoutFuneral = query.getResultList();
-        return departedListWithoutFuneral;
+        List<Departed> filteredList = findAllDepartedList().stream()
+                .filter(d -> d.getFuneral() == null)
+                .collect(Collectors.toList());
+//        Query query = entityManager.createQuery("select b from Departed b WHERE b.funeral is null");
+//        List<Departed> departedListWithoutFuneral = query.getResultList();
+//        return departedListWithoutFuneral;
+        return filteredList;
     }
 
 }

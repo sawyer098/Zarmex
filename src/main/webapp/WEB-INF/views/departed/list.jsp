@@ -41,7 +41,7 @@
     </header>
 
     <main class="main-section">
-    <h2 style="text-align: center;">Lista zmarłych</h2>
+    <h2 style="text-align: center;">LISTA ZMARŁYCH</h2>
         <div style="padding: 50px;">
         <table class="funeral-table" border="1">
             <tr style="text-align: center;">
@@ -52,6 +52,7 @@
                 <td>Wiek</td>
                 <td>Data śmierci</td>
                 <td>Miejsce zamieszkania</td>
+                <td>Id pogrzebu</td>
             </tr>
             <c:forEach items="${departedList}" var="departed">
             <tr style="text-align: center;">
@@ -62,10 +63,13 @@
                 <td>${departed.age}</td>
                 <td>${departed.dateOfDeath}</td>
                 <td>${departed.placeOfLive}</td>
+                <td>${departed.funeral.id}</td>
 
                 <td class="d-flex align-items-center justify-content-center flex-wrap">
-                    <a href="<c:out value="/departed/edit/${departed.id}"/>">Edytuj</a>
-                    <a onclick="if (confirm('Usunąć?')) {href='/departed/delete/${departed.id}'} else {return false;}">Usuń</a>
+                    <a href="<c:out value="/departed/edit/${departed.id}"/>" class="btn btn-info rounded-0 text-light m-1">Edytuj</a>
+                    <c:if test="${departed.funeral.id == null}">
+                    <a onclick="if (confirm('Usunąć?')) {href='/departed/delete/${departed.id}'} else {return false;}" class="btn btn-info rounded-0 text-light m-1">Usuń</a>
+                    </c:if>
                 </td>
             </tr>
             </c:forEach>

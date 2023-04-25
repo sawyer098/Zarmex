@@ -43,6 +43,14 @@ public class ValidatorController {
         return "/validations/list";
     }
 
+    @RequestMapping("/validate/funeral/form")
+    public String funeralFormValidate(Model model) {
+        Funeral funeral = new Funeral();
+        Set<ConstraintViolation<Funeral>> violations = validator.validate(funeral);
+        model.addAttribute("errors", violations);
+        return "/validations/list";
+    }
+
     @RequestMapping("/validate/client")
     public String clientValidate(Model model) {
         Client client = new Client();

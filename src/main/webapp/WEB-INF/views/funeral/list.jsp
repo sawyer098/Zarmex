@@ -42,7 +42,7 @@
     </header>
 
     <main class="main-section">
-        <h2 style="text-align: center;">Lista pogrzebów</h2>
+        <h2 style="text-align: center;">LISTA POGRZEBÓW</h2>
         <div style="padding: 50px;">
         <table class="funeral-table" border="1">
             <thead>

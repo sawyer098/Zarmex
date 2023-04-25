@@ -42,7 +42,7 @@
     </header>
 
     <main class="main-section">
-        <h2 style="text-align: center;">Lista klientów</h2>
+        <h2 style="text-align: center;">LISTA KLIENTÓW</h2>
         <div style="padding: 50px;">
         <table class="funeral-table" border="1">
             <tr style="text-align: center;">
@@ -50,6 +50,7 @@
                 <td>Imię</td>
                 <td>Nazwisko</td>
                 <td>Telefon kontaktowy</td>
+<%--                <td>Id pogrzebu</td>--%>
             </tr>
             <c:forEach items="${clientList}" var="client">
                 <tr style="text-align: center;">
@@ -57,10 +58,13 @@
                     <td>${client.firstName}</td>
                     <td>${client.lastName}</td>
                     <td>${client.phoneNumber}</td>
+<%--                    <td>${client.funeral.id}</td>--%>
 
                     <td class="d-flex align-items-center justify-content-center flex-wrap">
-                        <a href="<c:out value="/client/edit/${client.id}"/>">Edytuj</a>
-                        <a onclick="if (confirm('Usunąć?')) {href='/client/delete/${client.id}'} else {return false;}">Usuń</a>
+                        <a href="<c:out value="/client/edit/${client.id}"/>" class="btn btn-info rounded-0 text-light m-1">Edytuj</a>
+<%--                        <c:if test="${client.funeral.id == null}">--%>
+                        <a onclick="if (confirm('Usunąć?')) {href='/client/delete/${client.id}'} else {return false;}" class="btn btn-info rounded-0 text-light m-1">Usuń</a>
+<%--                        </c:if>--%>
                     </td>
                 </tr>
             </c:forEach>

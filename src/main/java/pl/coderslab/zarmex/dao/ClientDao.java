@@ -34,7 +34,7 @@ public class ClientDao {
     }
 
     public List<Client> findAll () {
-        Query query = entityManager.createQuery("SELECT b FROM Client b");
+        Query query = entityManager.createQuery("SELECT b FROM Client b ORDER BY b.id DESC");
         List<Client> clients = query.getResultList();
         return clients;
     }

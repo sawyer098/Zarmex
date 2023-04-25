@@ -17,23 +17,24 @@ public class Client {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-//    1. Imię
+    //    1. Imię
     @NotEmpty(message = "Podaj imie")
     private String firstName;
 
-//    2. Nazwisko
+    //    2. Nazwisko
     @NotEmpty(message = "Podaj nazwisko")
     private String lastName;
 
-//    3. Telefon kontaktowy
+    //    3. Telefon kontaktowy
     @Size(min = 9, max = 9, message = "Podaj telefon kontaktowy: 111222333")
     private String phoneNumber;
 
-//    4. Pogrzeby danego klienta
+    //    4. Pogrzeby danego klienta
     @OneToMany(fetch = FetchType.EAGER)
-    @JoinTable(name="clients_funerals",
+    @JoinTable(name = "clients_funerals",
     joinColumns = @JoinColumn(name = "client_id"),
-    inverseJoinColumns = @JoinColumn(name="funeral_id"))
+    inverseJoinColumns = @JoinColumn(name = "funeral_id"))
     private List<Funeral> funerals = new ArrayList<>();
 
+    private String fullName;
 }

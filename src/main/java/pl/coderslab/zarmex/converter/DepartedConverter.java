@@ -6,7 +6,6 @@ import pl.coderslab.zarmex.model.Departed;
 import pl.coderslab.zarmex.service.DepartedService;
 
 public class DepartedConverter implements Converter<String, Departed> {
-
     @Autowired
     private DepartedService departedService;
 
