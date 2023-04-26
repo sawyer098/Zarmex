@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -58,12 +59,19 @@
                     <td>${client.firstName}</td>
                     <td>${client.lastName}</td>
                     <td>${client.phoneNumber}</td>
-<%--                    <td>${client.funeral.id}</td>--%>
+
+<%--                    <td>--%>
+<%--                        <c:forEach items="${client.funerals}" var="funeral">--%>
+<%--                            ${funeral.id},--%>
+<%--                        </c:forEach>--%>
+<%--                    </td>--%>
+
+
 
                     <td class="d-flex align-items-center justify-content-center flex-wrap">
                         <a href="<c:out value="/client/edit/${client.id}"/>" class="btn btn-info rounded-0 text-light m-1">Edytuj</a>
-<%--                        <c:if test="${client.funeral.id == null}">--%>
-                        <a onclick="if (confirm('Usunąć?')) {href='/client/delete/${client.id}'} else {return false;}" class="btn btn-info rounded-0 text-light m-1">Usuń</a>
+<%--                        <c:if test="${empty client.funerals}">--%>
+<%--                        <a onclick="if (confirm('Usunąć?')) {href='/client/delete/${client.id}'} else {return false;}" class="btn btn-info rounded-0 text-light m-1">Usuń</a>--%>
 <%--                        </c:if>--%>
                     </td>
                 </tr>

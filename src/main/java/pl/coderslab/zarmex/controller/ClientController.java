@@ -6,9 +6,12 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.coderslab.zarmex.model.Client;
+import pl.coderslab.zarmex.model.Funeral;
 import pl.coderslab.zarmex.service.ClientService;
+import pl.coderslab.zarmex.service.FuneralService;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -17,15 +20,38 @@ import java.util.List;
 public class ClientController {
 
     private final ClientService clientService;
+    private final FuneralService funeralService;
 
     @ModelAttribute
     public List<Client> getClientList() {
         return clientService.findAll();
     }
 
+//    @ModelAttribute
+//    public List<Funeral> getFuneralList() {
+//        return funeralService.findAllFunerals();
+//    }
+
+//    @RequestMapping("/all")
+//    public String findAll(Model model) {
+//        List<Client> clientList = clientService.findAll();
+////        for (Client client : clientList) {
+////            List<Funeral> funeralList = funeralService.getFuneralsByClientId(client.getId());
+////            model.addAttribute("funeral", funeralList);
+////        }
+//        model.addAttribute("client", clientList);
+//        return "/client/list";
+//    }
+
     @RequestMapping("/all")
     public String findAll(Model model) {
         List<Client> clientList = clientService.findAll();
+        List<List<Funeral>> funeralList = new ArrayList<>();
+        for (Client client : clientList) {
+            List<Funeral> clientFunerals = funeralService.getFuneralsByClientId(client.getId());
+            funeralList.add(clientFunerals);
+        }
+        model.addAttribute("funeral", funeralList);
         model.addAttribute("client", clientList);
         return "/client/list";
     }

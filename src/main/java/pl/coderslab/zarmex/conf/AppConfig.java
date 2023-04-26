@@ -4,6 +4,7 @@ package pl.coderslab.zarmex.conf;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalEntityManagerFactoryBean;
@@ -12,6 +13,7 @@ import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.servlet.LocaleContextResolver;
 import org.springframework.web.servlet.config.annotation.*;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
+import pl.coderslab.zarmex.Repository.FuneralRepository;
 import pl.coderslab.zarmex.converter.ClientConverter;
 import pl.coderslab.zarmex.converter.DateConverter;
 import pl.coderslab.zarmex.converter.DepartedConverter;
@@ -23,6 +25,7 @@ import java.util.Locale;
 @Configuration
 @EnableWebMvc
 @ComponentScan(basePackages = "pl.coderslab.zarmex")
+@EnableJpaRepositories(basePackages = "pl.coderslab.zarmex")
 @EnableTransactionManagement
 public class AppConfig implements WebMvcConfigurer {
 
@@ -86,7 +89,6 @@ public class AppConfig implements WebMvcConfigurer {
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/webapp/**").addResourceLocations("/webapp/");
     }
-
 
 }
 

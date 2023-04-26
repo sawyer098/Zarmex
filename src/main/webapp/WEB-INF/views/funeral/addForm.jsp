@@ -48,8 +48,8 @@
                 <form:form method="post" modelAttribute="funeral">
                 <thead>
                 <tr>
-                    <th>Nazwa</th>
-                    <th>Cena</th>
+                    <th style="text-align: center;">Nazwa</th>
+                    <th style="text-align: center;">Cena</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -94,7 +94,7 @@
                         <form:errors path="clothes"/></td>
                 </tr>
                 <tr>
-                    <td>KSIĄŻĘCZKA </td>
+                    <td>KSIĄŻECZKA </td>
                     <td><form:input path="book" type="number"/>
                         <form:errors path="book"/></td>
                 </tr>
@@ -104,8 +104,8 @@
                         <form:errors path="rosary"/></td>
                 </tr>
                 <tr>
-                    <th></th>
-                    <th></th>
+                    <th style="text-align: center;">-</th>
+                    <th style="text-align: center;">-</th>
                 </tr>
                 <tr>
                     <td>DATA POGRZEBU </td>

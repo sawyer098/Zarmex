@@ -73,6 +73,7 @@ public class FuneralFormController {
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable long id, Model model) {
         List<Departed> departedes = departedService.findAllDepartedWithoutFuneralList();
+//        departedes.add(departedService.departedFindById(id));
         for (Departed departed : departedes) {
             departed.setFullName(departed.getFirstName() + " " + departed.getLastName());
         }

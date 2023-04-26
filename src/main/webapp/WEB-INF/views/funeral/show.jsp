@@ -41,7 +41,7 @@
     </nav>
 </header>
 <main class="main-section">
-    <h2 style="text-align: center;">LISTA KLIENTÓW</h2>
+    <h2 style="text-align: center;">SZCZEGÓŁY POGRZEBU</h2>
     <div style="padding: 50px;">
         <table class="funeral-table" border="1">
             <tr style="text-align: center;">
@@ -85,7 +85,7 @@
                 <td>${funeral.coffin}</td>
             </tr>
             <tr style="text-align: center;">
-                <td>tabliczka na trumnę</td>
+                <td>Tabliczka na trumnę</td>
                 <td>${funeral.plateOnCoffin}</td>
             </tr>
             <tr style="text-align: center;">
@@ -122,7 +122,7 @@
             </tr>
             <tr style="text-align: center;">
                 <td>Koszt pogrzebu</td>
-                <td>${funeral.cost}</td>
+                <td>${funeral.cost = funeral.rosary + funeral.book + funeral.clothes + funeral.dressing + funeral.freezer + funeral.funeralService + funeral.transport + funeral.necrology + funeral.plateOnCoffin + funeral.coffin}</td>
             </tr>
             <tr style="text-align: center;">
                 <td>Data utworzenia pogrzebu</td>
@@ -141,7 +141,7 @@
                 <td>${funeral.client.phoneNumber}</td>
             </tr>
             <tr style="text-align: center;">
-                <td><a href="<c:out value="/funeral/edit/${funeral.id}"/>">Edytuj</a></td>
+                <td><a href="<c:out value="/funeral/form/edit/${funeral.id}"/>">Edytuj</a></td>
                 <td><a href="<c:out value="/funeral/delete/${funeral.id}"/>">Usuń</a></td>
             </tr>
 </table>

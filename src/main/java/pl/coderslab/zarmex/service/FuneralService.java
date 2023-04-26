@@ -1,8 +1,13 @@
 package pl.coderslab.zarmex.service;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+//import pl.coderslab.zarmex.Repository.FuneralRepository;
+import pl.coderslab.zarmex.Repository.FuneralRepository;
 import pl.coderslab.zarmex.dao.FuneralDao;
+import pl.coderslab.zarmex.model.Client;
 import pl.coderslab.zarmex.model.Funeral;
 
 import java.util.List;
@@ -12,6 +17,10 @@ import java.util.List;
 public class FuneralService {
 
     private final FuneralDao funeralDao;
+    @Autowired
+    private final FuneralRepository funeralRepository;
+
+//    private final FuneralRepository funeralRepository;
 
     public void funeralSave (Funeral funeral) {
         funeralDao.save(funeral);
@@ -33,4 +42,7 @@ public class FuneralService {
         return funeralDao.findAllFunerals();
     }
 
+    public List<Funeral> getFuneralsByClientId(Long clientId) {
+        return funeralRepository.findByClientId(clientId);
+    }
 }

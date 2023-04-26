@@ -38,4 +38,5 @@ public class ClientDao {
         List<Client> clients = query.getResultList();
         return clients;
     }
+
 }

@@ -52,7 +52,7 @@
                 <td>Wiek</td>
                 <td>Data śmierci</td>
                 <td>Miejsce zamieszkania</td>
-                <td>Id pogrzebu</td>
+                <td>Numer pogrzebu</td>
             </tr>
             <c:forEach items="${departedList}" var="departed">
             <tr style="text-align: center;">
