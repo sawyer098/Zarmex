@@ -51,6 +51,7 @@
                 <td>Imię</td>
                 <td>Nazwisko</td>
                 <td>Telefon kontaktowy</td>
+                <td>ACTIVE</td>
 <%--                <td>Id pogrzebu</td>--%>
             </tr>
             <c:forEach items="${clientList}" var="client">
@@ -59,7 +60,7 @@
                     <td>${client.firstName}</td>
                     <td>${client.lastName}</td>
                     <td>${client.phoneNumber}</td>
-
+                    <td>${client.active}</td>
 <%--                    <td>--%>
 <%--                        <c:forEach items="${client.funerals}" var="funeral">--%>
 <%--                            ${funeral.id},--%>
@@ -70,8 +71,8 @@
 
                     <td class="d-flex align-items-center justify-content-center flex-wrap">
                         <a href="<c:out value="/client/edit/${client.id}"/>" class="btn btn-info rounded-0 text-light m-1">Edytuj</a>
-<%--                        <c:if test="${empty client.funerals}">--%>
-<%--                        <a onclick="if (confirm('Usunąć?')) {href='/client/delete/${client.id}'} else {return false;}" class="btn btn-info rounded-0 text-light m-1">Usuń</a>--%>
+<%--                        <c:if test="${client.active}">--%>
+                        <a onclick="if (confirm('Usunąć?')) {href='/client/delete/${client.id}'} else {return false;}" class="btn btn-info rounded-0 text-light m-1">Usuń</a>
 <%--                        </c:if>--%>
                     </td>
                 </tr>

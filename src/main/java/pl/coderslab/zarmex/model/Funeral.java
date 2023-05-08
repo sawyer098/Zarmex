@@ -43,19 +43,23 @@ public class Funeral {
     private long rosary;
     //    12. Suma
     private long cost;
+
     //    13. Data pogrzebu
     @Temporal(TemporalType.DATE)
     private Date funeralDate;
-    //    Godzina pogrzebu
+
+    //    14. Godzina pogrzebu
     private String funeralTime;
-    //    14. Miejsce pogrzebu
+
+    //    15. Miejsce pogrzebu
     private String funeralPlace;
-    //    15. Data utworzenia
+
+    //    16. Data utworzenia
     @Temporal(TemporalType.DATE)
     @CreationTimestamp
     private Date created;
 
-    //    16. Klient danego pogrzebu
+    //    17. Klient danego pogrzebu
     @ManyToOne
     private Client client;
 

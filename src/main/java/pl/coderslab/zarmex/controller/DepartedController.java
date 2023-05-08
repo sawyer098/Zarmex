@@ -2,24 +2,18 @@ package pl.coderslab.zarmex.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import pl.coderslab.zarmex.model.Departed;
-import pl.coderslab.zarmex.model.Funeral;
 import pl.coderslab.zarmex.service.DepartedService;
-import pl.coderslab.zarmex.service.FuneralService;
 
 import javax.validation.Valid;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 @RequestMapping("/departed")
@@ -76,7 +70,6 @@ public class DepartedController {
         departedService.departedDelete(departed);
         return "redirect:/departed/all";
     }
-
 
     @InitBinder
     public void initBinder(WebDataBinder binder) {

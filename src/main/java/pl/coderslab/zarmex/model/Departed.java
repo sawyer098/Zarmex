@@ -26,12 +26,14 @@ public class Departed {
     //    3. Data urodzenia zmarłego
     @Temporal(TemporalType.DATE)
     private Date dateOfBirth;
+
     //    4. Wiek zmarłego
     private int age;
 
     //    5. Data śmierci zmarłego
     @Temporal(TemporalType.DATE)
     private Date dateOfDeath;
+
     //    6. Miejsce zamieszkania zmarłego
     private String placeOfLive;
 

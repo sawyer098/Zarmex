@@ -13,7 +13,6 @@ import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.servlet.LocaleContextResolver;
 import org.springframework.web.servlet.config.annotation.*;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
-import pl.coderslab.zarmex.Repository.FuneralRepository;
 import pl.coderslab.zarmex.converter.ClientConverter;
 import pl.coderslab.zarmex.converter.DateConverter;
 import pl.coderslab.zarmex.converter.DepartedConverter;

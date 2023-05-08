@@ -27,22 +27,6 @@ public class ClientController {
         return clientService.findAll();
     }
 
-//    @ModelAttribute
-//    public List<Funeral> getFuneralList() {
-//        return funeralService.findAllFunerals();
-//    }
-
-//    @RequestMapping("/all")
-//    public String findAll(Model model) {
-//        List<Client> clientList = clientService.findAll();
-////        for (Client client : clientList) {
-////            List<Funeral> funeralList = funeralService.getFuneralsByClientId(client.getId());
-////            model.addAttribute("funeral", funeralList);
-////        }
-//        model.addAttribute("client", clientList);
-//        return "/client/list";
-//    }
-
     @RequestMapping("/all")
     public String findAll(Model model) {
         List<Client> clientList = clientService.findAll();

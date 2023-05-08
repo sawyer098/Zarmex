@@ -37,4 +37,5 @@ public class Client {
     private List<Funeral> funerals = new ArrayList<>();
 
     private String fullName;
+
 }

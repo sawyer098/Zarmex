@@ -16,6 +16,7 @@ public class FuneralDao {
     @PersistenceContext
     EntityManager entityManager;
 
+// brak zapisu do tabeli clients_funerals .
     public void save (Funeral funeral) {
         entityManager.persist(funeral);
     }

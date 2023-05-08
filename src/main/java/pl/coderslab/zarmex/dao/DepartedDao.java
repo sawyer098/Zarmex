@@ -43,10 +43,14 @@ public class DepartedDao {
         List<Departed> filteredList = findAllDepartedList().stream()
                 .filter(d -> d.getFuneral() == null)
                 .collect(Collectors.toList());
-//        Query query = entityManager.createQuery("select b from Departed b WHERE b.funeral is null");
-//        List<Departed> departedListWithoutFuneral = query.getResultList();
-//        return departedListWithoutFuneral;
+
         return filteredList;
+    }
+
+    public Departed findDepartedByFuneralId(long funeralId) {
+        Query query = entityManager.createQuery("SELECT f.departed FROM Funeral f WHERE f.id = :funeralId", Departed.class);
+        query.setParameter("funeralId", funeralId);
+        return (Departed) query.getSingleResult();
     }
 
 }
